@@ -39,7 +39,7 @@ fun ItemListScreen(navController: NavController, viewModel: ProductViewModel = h
                 .fillMaxWidth()
                 .padding(top = 20.dp, bottom = 8.dp), horizontalArrangement = Arrangement.Center
         ) {
-            Text(text = "Please select a product below to edit", fontWeight = FontWeight.Bold)
+            Text(text = "Please select a product to delete below", fontWeight = FontWeight.Bold)
         }
         Divider(modifier = Modifier.padding(bottom = 8.dp))
 
@@ -60,22 +60,10 @@ fun ItemListScreen(navController: NavController, viewModel: ProductViewModel = h
                         )
 
                         Text(
-                            text = "M${it.productPrice}/kg", modifier = Modifier
+                            text = "M${String.format("%.2f", it.productPrice.toDoubleOrNull())}/kg", modifier = Modifier
                                 .weight(0.4F)
                                 .padding(start = 20.dp)
                         )
-
-                        IconButton(
-                            //go to NewItemScreen passing in productId
-                            onClick = {
-                                val productId = product.value.id
-                                navController.navigate(ChimhauScreens.NewItemScreen.name) },
-                            modifier = Modifier
-                                .weight(0.1F)
-                                .padding(start = 5.dp, end = 15.dp)
-                        ) {
-                            Icon(imageVector = Icons.Default.Edit, contentDescription = "Edit Icon")
-                        }
                         IconButton(
                             onClick = {
                                 openDialog.value = true

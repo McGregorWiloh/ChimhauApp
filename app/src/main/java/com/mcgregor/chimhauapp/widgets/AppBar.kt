@@ -47,7 +47,7 @@ fun TopAppBarDropDownMenu(
            .clickable { navController.navigate(ChimhauScreens.NewItemScreen.name) }
            .padding(start = 4.dp, end = 4.dp, bottom = 8.dp)
         )
-        Text(text = "Edit Item", modifier = Modifier
+        Text(text = "Delete Item", modifier = Modifier
            .clickable { navController.navigate(ChimhauScreens.ItemListScreen.name) }
            .padding(4.dp)
         )

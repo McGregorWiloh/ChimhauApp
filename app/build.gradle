@@ -69,7 +69,8 @@ dependencies {
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
     implementation 'androidx.room:room-ktx:2.5.0'
     //itext PDF library
-    implementation 'com.itextpdf:itext7-core:7.1.11'
+    implementation 'com.itextpdf:itext7-core:7.1.16'
+    /*implementation 'com.itextpdf:itext7-sign:7.1.16'*/
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.6.4"
 
