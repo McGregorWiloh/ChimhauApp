@@ -39,7 +39,10 @@ import com.itextpdf.layout.element.Cell
 import com.itextpdf.layout.element.Image
 import com.itextpdf.layout.element.LineSeparator
 import com.itextpdf.layout.element.Paragraph
+import com.itextpdf.layout.element.Tab
+import com.itextpdf.layout.element.TabStop
 import com.itextpdf.layout.element.Table
+import com.itextpdf.layout.property.TabAlignment
 import com.itextpdf.layout.property.TextAlignment
 import com.itextpdf.layout.property.UnitValue
 import com.mcgregor.chimhauapp.R
@@ -315,24 +318,31 @@ fun createPDF(
     document.add(image)
     document.add(lineSeparator)
 
-    val table0 = Table(UnitValue.createPercentArray(floatArrayOf(50f, 50f))).useAllAvailableWidth()
-    table0.addHeaderCell(
-        Cell().add(
-            Paragraph("From: ${sellerNameAndSurname.value}\n${sellerAddress.value}").setTextAlignment(
-                TextAlignment.CENTER
-            )
-        )
-    )
-    table0.addHeaderCell(
-        Cell().add(
-            Paragraph("To: Chimhau Scrap\nHa Tikoe\nMaseru").setTextAlignment(
-                TextAlignment.CENTER
-            )
-        )
-    )
-    document.add(table0)
-    /*val companyAddress = Paragraph("To: Chimhau Scrap\n100 Maseru\nHa Leqele").setTextAlignment(TextAlignment.RIGHT)
-    document.add(companyAddress)*/
+    val paragFrom = Paragraph("From: ${sellerNameAndSurname.value}")
+    /**/
+    paragFrom.add(Tab())
+    paragFrom.addTabStops(TabStop(500F, TabAlignment.RIGHT))
+    paragFrom.add("To: Chimhau Scrap\n")
+    val delimiter = "\n"
+    val newSellerAddress = sellerAddress.value.split(delimiter)
+    var sellerAddressPart1 = if(0 in 0..newSellerAddress.lastIndex){newSellerAddress[0]}else{""}
+    var sellerAddressPart2 = if(1 in 0..newSellerAddress.lastIndex){newSellerAddress[1]}else{""}
+    var sellerAddressPart3 = if(2 in 0..newSellerAddress.lastIndex){newSellerAddress[2]}else{"\n"}
+    var sellerAddressPart4 = if(3 in 0..newSellerAddress.lastIndex){newSellerAddress[3]}else{"\n"}
+
+    paragFrom.add(sellerAddressPart1)
+    paragFrom.add(Tab())
+    paragFrom.addTabStops(TabStop(500F, TabAlignment.RIGHT))
+    paragFrom.add("Ha Tikoe\n")
+    paragFrom.add(sellerAddressPart2)
+    paragFrom.add(Tab())
+    paragFrom.addTabStops(TabStop(500F, TabAlignment.RIGHT))
+    paragFrom.add("Maseru\n")
+    paragFrom.add(sellerAddressPart3+"\n")
+    paragFrom.add(sellerAddressPart4)
+
+    document.add(paragFrom)
+
     val boldText = Paragraph("Invoice Bill")
 
     val emptyParagraph = Paragraph("")
