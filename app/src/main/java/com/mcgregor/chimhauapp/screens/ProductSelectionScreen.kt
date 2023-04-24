@@ -37,18 +37,6 @@ fun ProductSelectionScreen(
     val show = rememberSaveable { mutableStateOf(true) }
 
     val expanded = rememberSaveable { mutableStateOf(false) }
-    /*val fakeList = listOf(
-        Product(1, "Medium Low PCB", "20.31"),
-        Product(1, "High A2 PCB", "44.10"),
-        Product(1, "Small plastics CPU's", "32.00"),
-        Product(1, "Hard Drives", "91.16"),
-        Product(1, "High A PCB", "13.00"),
-        Product(1, "High B PCB", "23.00"),
-        Product(1, "High A+ PCB", "1234.00"),
-        Product(1, "Golden RAMs", "19.00"),
-        Product(1, "Ceramic CPU's (single)", "19.00"),
-        Product(1, "Solid Catalytic Converters", "19.00")
-    )*/
 
     Column(
         modifier = Modifier
@@ -127,17 +115,12 @@ fun TopAppBarDropDownMenu(
 ) {
 
     DropdownMenu(expanded = expanded.value, onDismissRequest = { expanded.value = false }) {
-        /*Text(text = "Create New Item", modifier = Modifier
-            .clickable {}.padding(4.dp))*/
         for (i in list) {
             Text(text = i.productName!!, modifier = Modifier
                 .clickable {
                     selectedProduct.value = i
                     isVisible.value = true
                     show.value = false
-                    Toast
-                        .makeText(context, "You've clicked $i", Toast.LENGTH_SHORT)
-                        .show()
                     expanded.value = false
                 }
                 .padding(start = 4.dp, end = 4.dp, bottom = 30.dp))
